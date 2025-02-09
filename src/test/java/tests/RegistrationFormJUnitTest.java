@@ -1,5 +1,6 @@
 package tests;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationFormPage;
 import utils.RandomUtils;
@@ -11,6 +12,7 @@ public class RegistrationFormJUnitTest extends TestBase {
     RandomUtils randomUtils = new RandomUtils();
 
     @Test
+    @Tag("demoqa")
     void successfulRegistrationFormJUnitTest() {
         registrationFormPage.openPage()
                 .removeBanner()

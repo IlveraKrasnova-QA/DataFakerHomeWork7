@@ -1,5 +1,6 @@
 package tests;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationFormPage;
@@ -15,6 +16,7 @@ public class RegistrationFormJUnitTest extends TestBase {
 
 
     @Test
+    @DisplayName("Полная проверка формы регистрации")
     void successfulRegistrationFormJUnitTest() {
         step("Open form", () -> {
                  registrationFormPage.openPage()
@@ -50,6 +52,7 @@ public class RegistrationFormJUnitTest extends TestBase {
     }
 
     @Test
+    @DisplayName("Проверка минимального ввода данных для регистрации")
     void minimumAmountOfInformationForRegistrationJUnitTest() {
         step("Open form", () -> {
             registrationFormPage.openPage()
@@ -70,6 +73,7 @@ public class RegistrationFormJUnitTest extends TestBase {
     }
 
     @Test
+    @DisplayName("Негативная проверка формы регистрации")
     void negativeCheckJUnitTest() {
         step("Open form", () -> {
             registrationFormPage.openPage()

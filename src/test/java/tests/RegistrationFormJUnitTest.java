@@ -18,11 +18,11 @@ public class RegistrationFormJUnitTest extends TestBase {
     @Test
     @DisplayName("Полная проверка формы регистрации")
     void successfulRegistrationFormJUnitTest() {
-        step("Open form", () -> {
+        step("Открываем форму регистрации", () -> {
                  registrationFormPage.openPage()
                 .removeBanner();
         });
-        step("Fill form", () -> {
+        step("Заполняем форму", () -> {
             registrationFormPage.setFirstName(randomUtils.firstName)
                 .setLastName(randomUtils.lastName)
                 .setUserEmail(randomUtils.useremail)
@@ -37,7 +37,7 @@ public class RegistrationFormJUnitTest extends TestBase {
                 .setCity(randomUtils.city)
                 .submitForm();
         });
-        step("Verify results", () -> {
+        step("Проверяем введенные данные", () -> {
             registrationFormPage.checkResults("Student Name", randomUtils.firstName + " " + randomUtils.lastName)
                 .checkResults("Student Email", randomUtils.useremail)
                 .checkResults("Gender", randomUtils.gender)
@@ -54,18 +54,18 @@ public class RegistrationFormJUnitTest extends TestBase {
     @Test
     @DisplayName("Проверка минимального ввода данных для регистрации")
     void minimumAmountOfInformationForRegistrationJUnitTest() {
-        step("Open form", () -> {
+        step("Открываем форму регистрации", () -> {
             registrationFormPage.openPage()
                     .removeBanner();
         });
-        step("Fill form", () -> {
+        step("Заполняем форму", () -> {
             registrationFormPage.setFirstName(randomUtils.firstName)
                 .setLastName(randomUtils.lastName)
                 .setGender(randomUtils.gender)
                 .setUserNumber(randomUtils.usernumber)
                 .submitForm();
         });
-        step("Verify results", () -> {
+        step("Проверяем введенные данные", () -> {
            registrationFormPage.checkResults("Student Name", randomUtils.firstName + " " + randomUtils.lastName)
                 .checkResults("Gender", randomUtils.gender)
                 .checkResults("Mobile", randomUtils.usernumber);
@@ -75,11 +75,11 @@ public class RegistrationFormJUnitTest extends TestBase {
     @Test
     @DisplayName("Негативная проверка формы регистрации")
     void negativeCheckJUnitTest() {
-        step("Open form", () -> {
+        step("Открываем форму регистрации", () -> {
             registrationFormPage.openPage()
                     .removeBanner();
         });
-        step("Fill form", () -> {
+        step("Заполняем форму", () -> {
             registrationFormPage.setFirstName(randomUtils.firstName)
                 .setLastName(randomUtils.lastName)
                 .setGender(randomUtils.gender)
@@ -89,7 +89,7 @@ public class RegistrationFormJUnitTest extends TestBase {
                 .setUserNumber(randomUtils.usernumber)
                 .submitForm();
         });
-        step("Verify results", () -> {
+        step("Проверяем введенные данные", () -> {
             registrationFormPage.checkResults("Student Name", randomUtils.firstName + " " + randomUtils.lastName)
                 .checkResults("Gender", randomUtils.gender)
                 .checkResults("Mobile", randomUtils.usernumber);

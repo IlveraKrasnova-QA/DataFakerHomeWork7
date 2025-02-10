@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import pages.RegistrationFormPage;
 import utils.RandomUtils;
 
+import static io.qameta.allure.Allure.step;
+
 @Tag("demoqa")
 public class RegistrationFormJUnitTest extends TestBase {
 
@@ -14,9 +16,12 @@ public class RegistrationFormJUnitTest extends TestBase {
 
     @Test
     void successfulRegistrationFormJUnitTest() {
-        registrationFormPage.openPage()
-                .removeBanner()
-                .setFirstName(randomUtils.firstName)
+        step("Open form", () -> {
+                 registrationFormPage.openPage()
+                .removeBanner();
+        });
+        step("Fill form", () -> {
+            registrationFormPage.setFirstName(randomUtils.firstName)
                 .setLastName(randomUtils.lastName)
                 .setUserEmail(randomUtils.useremail)
                 .setGender(randomUtils.gender)
@@ -28,8 +33,10 @@ public class RegistrationFormJUnitTest extends TestBase {
                 .setCurrentAddress(randomUtils.userAddress)
                 .setState(randomUtils.state)
                 .setCity(randomUtils.city)
-                .submitForm()
-                .checkResults("Student Name", randomUtils.firstName + " " + randomUtils.lastName)
+                .submitForm();
+        });
+        step("Verify results", () -> {
+            registrationFormPage.checkResults("Student Name", randomUtils.firstName + " " + randomUtils.lastName)
                 .checkResults("Student Email", randomUtils.useremail)
                 .checkResults("Gender", randomUtils.gender)
                 .checkResults("Mobile", randomUtils.usernumber)
@@ -39,37 +46,50 @@ public class RegistrationFormJUnitTest extends TestBase {
                 .checkResults("Picture", randomUtils.picture)
                 .checkResults("Address", randomUtils.userAddress)
                 .checkResults("State and City", randomUtils.city);
+        });
     }
 
     @Test
     void minimumAmountOfInformationForRegistrationJUnitTest() {
-        registrationFormPage.openPage()
-                .removeBanner()
-                .setFirstName(randomUtils.firstName)
+        step("Open form", () -> {
+            registrationFormPage.openPage()
+                    .removeBanner();
+        });
+        step("Fill form", () -> {
+            registrationFormPage.setFirstName(randomUtils.firstName)
                 .setLastName(randomUtils.lastName)
                 .setGender(randomUtils.gender)
                 .setUserNumber(randomUtils.usernumber)
-                .submitForm()
-                .checkResults("Student Name", randomUtils.firstName + " " + randomUtils.lastName)
+                .submitForm();
+        });
+        step("Verify results", () -> {
+           registrationFormPage.checkResults("Student Name", randomUtils.firstName + " " + randomUtils.lastName)
                 .checkResults("Gender", randomUtils.gender)
                 .checkResults("Mobile", randomUtils.usernumber);
+        });
     }
 
     @Test
     void negativeCheckJUnitTest() {
-        registrationFormPage.openPage()
-                .removeBanner()
-                .setFirstName(randomUtils.firstName)
+        step("Open form", () -> {
+            registrationFormPage.openPage()
+                    .removeBanner();
+        });
+        step("Fill form", () -> {
+            registrationFormPage.setFirstName(randomUtils.firstName)
                 .setLastName(randomUtils.lastName)
                 .setGender(randomUtils.gender)
                 .setUserNumber(randomUtils.wrongusernumber)
                 .submitForm()
                 .responseTable()
                 .setUserNumber(randomUtils.usernumber)
-                .submitForm()
-                .checkResults("Student Name", randomUtils.firstName + " " + randomUtils.lastName)
+                .submitForm();
+        });
+        step("Verify results", () -> {
+            registrationFormPage.checkResults("Student Name", randomUtils.firstName + " " + randomUtils.lastName)
                 .checkResults("Gender", randomUtils.gender)
                 .checkResults("Mobile", randomUtils.usernumber);
+        });
 
     }
 }
